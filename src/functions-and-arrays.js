@@ -77,19 +77,15 @@ function sum(things) {
   }
 
   for (let anything of things) {
-    console.log(anything);
-    console.log(typeof anything);
     switch (typeof anything) {
       case "number":
-        console.log("é numero");
         sum += anything;
         break;
       case "string":
-        console.log("é string");
         sum += anything.length;
         break;
       case "boolean":
-        console.log("é boolean");
+
         anything === true ? (sum += 1) : null;
         break;
       case "object":
@@ -344,7 +340,7 @@ const matrix = [
 function greatestProduct(array) {
   let greatestProduct = 0;
   array.forEach((element) => {
-    for (i = 0; i< element.length - 3; i++) {
+    for (i = 0; i < element.length - 3; i++) {
       if (
         element[i] * element[i + 1] * element[i + 2] * element[i + 3] >
         greatestProduct
@@ -354,6 +350,46 @@ function greatestProduct(array) {
       }
     }
   });
+  return greatestProduct;
+}
+
+function greatestProductOfDiagonals(matrix) {
+  let greatestProduct = 0;
+  for (i = 0; i < matrix.length - 3; i++) {
+    for (j = 0; j < matrix[0].length-3; j++) {
+      if (
+        matrix[j][i] *
+          matrix[j + 1][i + 1] *
+          matrix[j + 2][i + 2] *
+          matrix[j + 3][i + 3] >
+        greatestProduct
+      ) {
+        greatestProduct =
+          matrix[j][i] *
+          matrix[j + 1][i + 1] *
+          matrix[j + 2][i + 2] *
+          matrix[j + 3][i + 3];
+      }
+    }
+  }
+
+  for (i = matrix.length; i > 2; i--) {
+    for (j = 0; j < matrix[0].length-3; j++) {
+      if (
+        matrix[j][i] *
+          matrix[j + 1][i - 1] *
+          matrix[j + 2][i - 2] *
+          matrix[j + 3][i - 3] >
+        greatestProduct
+      ) {
+        greatestProduct =
+          matrix[j][i] *
+          matrix[j + 1][i - 1] *
+          matrix[j + 2][i - 2] *
+          matrix[j + 3][i - 3];
+      }
+    }
+  }
   return greatestProduct;
 }
 
